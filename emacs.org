@@ -1,51 +1,112 @@
-
 * system
-sudo pmset -a disablesleep 1
-open -n /Applications/
-sudo codesign --force --deep --sign - /~
-/Applications/Emacs.app/Contents/MacOS/Emacs --debug-init
-export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:789
-mac kill process  ps -ax | grep , killall 
-
+  sudo pmset -a disablesleep 1
+  open -n /Applications/
+  sudo codesign --force --deep --sign - /~
+  /Applications/Emacs.app/Contents/MacOS/Emacs --debug-init
+  export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+  mac kill process  ps -ax | grep , killall
+  mac package source [[https://www.macports.org/install.php][link]]
+* Jitouch
+  [[https://www.zhihu.com/question/430120501]] & https://www.reddit.com/r/macbookpro/comments/jvi03i/jitouch_replacement_after_big_sur/
 * emacs
-eval-buffer ;;刷新emacs
-C-h f function RET ( describe-function ) displays the documentation of Lisp function
-CLM/command-  global-command-mode ;;右侧记录
-counsel-find-file
-C-x-1 ;;close other windows
-counsel-switch-buffer
-C-x LEFT and C-x RIGHT . C-x LEFT ( previous-buffer ) C-x o ( other-window ).
-C-x 1 close other windows, C-x 2 open window under, C-x 3 open window right, C-x 0 close current window
-C-x C-f	Open/Create File, C-x k	Close File,,C-x C-s	Save File
-C-x C-e eval current function
-C-x C-q to turn dired into editing mode.use M-% to replace foo with bar in the dired buffer. ...
-use C-c C-c to save
-C-h f describe function
-counsel load theme
-buffer menu -> d -> x to delete marked buffers
-
+  eval-buffer ;;macs
+  C-h f function RET ( describe-function ) displays the documentation of Lisp function
+  CLM/command-  global-command-mode ;;
+  counsel-find-file
+  C-x-1 ;;close other windows
+  counsel-switch-buffer
+  C-x LEFT and C-x RIGHT . C-x LEFT ( previous-buffer ) C-x o ( other-window ).
+  C-x 1 close other windows, C-x 2 open window under, C-x 3 open window right, C-x 0 close current window
+  C-x C-f	Open/Create File, C-x k	Close File,,C-x C-s	Save File
+  C-x C-e eval current function
+  C-x C-q to turn dired into editing mode.use M-% to replace foo with bar in the dired buffer. ...
+  use C-c C-c to save
+  C-h f describe function
+  counsel load theme
+  buffer menu -> d -> x to delete marked buffers
+  *copy multiple pathnames* right click + option 
 * paredit
-#+ATTR_ORG: :width 1200
-[[/Users/iceonfire/github/Scheme/paredit_command.png]]
-
+  #+ATTR_ORG: :width 1200
+  [[/Users/iceonfire/github/Scheme/paredit_command.png]]
 * dired
-^ drill up, j search, g refresh, d mark, x excute, 0 w copy file path, 
-
+  ^ drill up, j search, g refresh, d mark, x excute, 0 w copy file path,
+  - cant access icloud folder -> emacs full disk access-> open any file by "open file"
+* consult
+  consult-yank-from-kill-ring
 * org-mode
-C-c C-x C-v (org-toggle-inline-images), custom group -> org faces.
+  - C-c C-x C-v (org-toggle-inline-images), custom group -> org faces.
+  - C-c C-t todo/done;
+  - C-C C-q set tags
+  - C-c C-s schedule; d deadline;
+  - C-c C-c eval code block to result
+  - using graphviz by babel dot file [[https://vxlabs.com/2014/12/04/inline-graphviz-dot-evaluation-for-graphs-using-emacs-org-mode-and-org-babel/][link]]
+  - *org store link* insert all links
+  #+begin_src dot :file ./images/example2.png :cmdline -Kdot -Tpng
+    graph graphname {
+	node [shape=box, fontname="Microsoft Yahei"];
+	rankdir=LR;
+	a [label="用户提交申请"]
+	b [label="直接领导（主/备）"]
+	c [label="高级总监"]
+	d [label="IT负责人（主/备）"]
+	e [label="IT高级总监"]
+	a -- b
+	b -- c
+	c -- d
+	d -- e
+    }
+     #+end_src
+** exprot settings [[https://orgmode.org/manual/Export-Settings.html#Export-Settings][link]]
+   
+   Paragraphs are separated by at least one empty line. If you need to enforce a line break within a paragraph, use ‘\\’ at the end of a line.
 
+   To preserve the line breaks, indentation and blank lines in a region, but otherwise use normal formatting, you can use this construct, which can also be used to format poetry.
+
+   #+BEGIN_VERSE
+   #+END_VERSE
+   When quoting a passage from another document, it is customary to format this as a paragraph that is indented on both the left and the right margin. You can include quotations in Org documents like this:
+
+   #+BEGIN_QUOTE
+   #+END_QUOTE
+   If you would like to center some text, do it like this:
+
+   #+BEGIN_CENTER
+   Everything should be made as simple as possible, \\
+   but not any simpler
+   #+END_CENTER
+   #+begin_quote
+   in the [[https://gitlab.com/OlMon/org-themes/-/tree/master/src][src]] directory, there is a folders for every theme. There is at least a .theme file. Download it and just add to your org file
+   #+SETUPFILE: <path to .theme file> 
+   This will embed the css into the html.
+   If you download the .css file of a theme, you can add it by adding
+   #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="<path to css>" />
+   #+end_quote
+   export-with-todo&theme
+   #+OPTIONS: p:t
+   ;;#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup#+end_src
 * counsel-projectil
-C-c C-o open file window, o action to the file.
-
+  C-c C-o open file window, o action to the file.
 * magit
-s stage, u unstage, c comit, c-c c-c which comment, P -f p, force push,
-
+  s stage, u unstage, c comit, c-c c-c which comment, P -f p, force push, 
+* git
+** git init
+   git init
+   git remote add origin https://gitlab.rd.inceptioglobal.ai/iceonfirek/emacs.git
+   git add .
+   git commit -m "Initial commit"
+   git push -u origin master
+** git reset
+   git merge --abort
+   git reset --hard HEAD~~~~
+   git log -5
+** git remote
+   *change remote* git remote set-url origin ~.git
+   [[https://devconnected.com/how-to-change-git-remote-origin/]]
 * mark ring
-C-u C-spc mark pop,
-
+  C-u C-spc mark pop,
 * term mode
-C-c C-j, line mode. /use shell/
-
+  C-c C-j, line mode. /use shell/
 * web browser
-widget-webkit-browse-url
-
+  widget-webkit-browse-url
+* Meow mode
+  j,k,h,l,i + shift.
